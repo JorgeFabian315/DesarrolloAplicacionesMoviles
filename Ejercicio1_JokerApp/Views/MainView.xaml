@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:vm="clr-namespace:Ejercicio1_JokerApp.ViewModels"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Ejercicio1_JokerApp.Views.MainView"
+             Title="MainView">
+    <ContentPage.BindingContext>
+        <vm:JokeViewModel />
+    </ContentPage.BindingContext>
+    <VerticalStackLayout Background="White"
+                         Spacing="40"
+                         Margin="0,50,0,0"
+                         Padding="30">
+        <Label Text="JokeAPI"
+               FontSize="50"
+               TextColor="Black"
+               HorizontalOptions="CenterAndExpand"
+               FontAttributes="Bold" />
+        
+        <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
+            <Label Text="Categorías:"
+                   TextColor="Black"
+                   FontSize="20"
+                   Margin="0,0,30,0"
+                   VerticalTextAlignment="Center"
+                   FontAttributes="Bold" />
+            <Picker x:Name="CategoryPicker"
+                    BackgroundColor="#283A51"
+                    WidthRequest="200"
+                    ItemsSource="{Binding Categories}"
+                    SelectedItem="{Binding Category}" />
+        </HorizontalStackLayout>
+        
+        <Button Text="Generar"
+                WidthRequest="150"
+                HeightRequest="50"
+                FontSize="15"
+                TextColor="White"
+                Command="{Binding MostrarCommnad}"
+                BackgroundColor="#283A51"></Button>
+        
+        <Editor IsReadOnly="True"
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="Center"
+                Text="{Binding Joke}"
+                TextColor="Black"/>
+    </VerticalStackLayout>
+</ContentPage>
