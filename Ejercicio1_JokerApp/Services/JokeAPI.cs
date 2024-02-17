@@ -9,7 +9,7 @@ namespace Ejercicio1_JokerApp.Services
 {
     internal class JokeAPI
     {
-        public string url = " https://v2.jokeapi.dev/";
+        public string url = "https://v2.jokeapi.dev/";
         HttpClient client;
 
         public async Task<List<string>> GetCategorias()
