@@ -16,9 +16,13 @@ namespace Ejercicio1_JokerApp.Services
         {
             client = new();
             var respuesta = await client.GetAsync($"{url}categories");
+
             respuesta.EnsureSuccessStatusCode();
+
             var json = await respuesta.Content.ReadAsStringAsync();
+            
             var categoryData = Newtonsoft.Json.JsonConvert.DeserializeObject<CategoriesData>(json);
+            
             return categoryData.Categories;
         }
 

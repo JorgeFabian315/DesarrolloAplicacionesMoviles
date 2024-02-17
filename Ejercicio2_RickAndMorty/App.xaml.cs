@@ -1,4 +1,6 @@
-﻿namespace Ejercicio2_RickAndMorty
+﻿using Ejercicio2_RickAndMorty.Views;
+
+namespace Ejercicio2_RickAndMorty
 {
     public partial class App : Application
     {
@@ -6,7 +8,7 @@
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            MainPage =  new NavigationPage(new MainView());
         }
     }
 }
