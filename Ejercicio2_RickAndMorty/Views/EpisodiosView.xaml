@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Ejercicio2_RickAndMorty.ViewModel"
+             x:Class="Ejercicio2_RickAndMorty.Views.EpisodiosView"
+             Title="EpisodiosView">
+    <ContentPage.BindingContext>
+        <vm:RickAndMortyViewModel />
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <VerticalStackLayout Background="White">
+            <Image Source="logo.png"
+                   HeightRequest="80"
+                   Margin="10" />
+            <CollectionView ItemsSource="{Binding Episodios}"
+                            ItemsLayout="VerticalGrid,2"
+                            SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout Margin="10"
+                                             Padding="10,20"
+                                             Background="#2A384F">
+                            <Image HeightRequest="110"
+                                   WidthRequest="110"
+                                   Source="ubi.jpg" />
+                            <Label Text="{Binding Name}"
+                                   Margin="5"
+                                   FontSize="15"
+                                   TextColor="#98D43A"
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center"
+                                   HorizontalOptions="Center" />
+                            <Label Text="{Binding Episode}"
+                                   Margin="5"
+                                   FontSize="15"
+                                   FontAttributes="Bold"
+                                   TextColor="#98D43A"
+                                   HorizontalTextAlignment="Center"
+                                   HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

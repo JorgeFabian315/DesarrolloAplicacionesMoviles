@@ -1,34 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vm="clr-namespace:Ejercicio2_RickAndMorty.ViewModel"
-             x:Class="Ejercicio2_RickAndMorty.Views.MainView"
-             Title="">
-    <ContentPage.BindingContext>
-        <vm:RickAndMortyViewModel />
-    </ContentPage.BindingContext>
-    <ScrollView>
-        <VerticalStackLayout>
-            <Image Source="logo.png" HeightRequest="80" Margin="10"/>
-            <CollectionView ItemsSource="{Binding Personajes}"
-                            ItemsLayout="VerticalGrid,2"
-                            SelectionMode="Single">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <VerticalStackLayout Margin="10">
-                            <Image HeightRequest="110"
-                                   WidthRequest="110"
-                                   Source="{Binding Image}" />
-                            <Label Text="{Binding Name}"
-                                   Margin="5"
-                                   FontSize="20"
-                                   TextColor="#AED2E6"
-                                   HorizontalTextAlignment="Center"
-                                   HorizontalOptions="Center" />
-                        </VerticalStackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </VerticalStackLayout>
-    </ScrollView>
-</ContentPage>
+<TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:vm="clr-namespace:Ejercicio2_RickAndMorty.ViewModel"
+            xmlns:views="clr-namespace:Ejercicio2_RickAndMorty.Views"
+            xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            x:Class="Ejercicio2_RickAndMorty.Views.MainView"
+            BarBackgroundColor="#2A384F"
+            BarTextColor="White">
+    <views:PersonajesView Title="Personajes"
+                          BackgroundColor="GhostWhite"
+                          IconImageSource="users.png" />
+    <views:UbicacionesView  Title="Ubicaciones"
+                            IconImageSource="ubicacion.png" />
+    <views:EpisodiosView  Title="Episodios"
+                          IconImageSource="epi.png" />
+</TabbedPage>

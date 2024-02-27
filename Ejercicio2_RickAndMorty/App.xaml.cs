@@ -8,7 +8,9 @@ namespace Ejercicio2_RickAndMorty
         {
             InitializeComponent();
 
-            MainPage =  new NavigationPage(new MainView());
+            var vista = new MainView();
+
+            MainPage =  new NavigationPage(vista);
         }
     }
 }

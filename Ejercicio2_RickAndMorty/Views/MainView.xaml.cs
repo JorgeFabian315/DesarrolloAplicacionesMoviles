@@ -2,7 +2,7 @@ using Ejercicio2_RickAndMorty.Services;
 
 namespace Ejercicio2_RickAndMorty.Views;
 
-public partial class MainView : ContentPage
+public partial class MainView : TabbedPage
 {
 	public MainView()
 	{

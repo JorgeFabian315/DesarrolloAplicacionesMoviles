@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace Ejercicio2_RickAndMorty
+namespace Ejercicio3PlatziFakeStore
 {
     public static class MauiProgram
     {
@@ -16,8 +16,9 @@ namespace Ejercicio2_RickAndMorty
                 });
 
 #if DEBUG
-		builder.Logging.AddDebug();
+    		builder.Logging.AddDebug();
 #endif
+
             return builder.Build();
         }
     }

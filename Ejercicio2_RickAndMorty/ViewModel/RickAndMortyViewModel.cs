@@ -1,5 +1,6 @@
 ﻿using Ejercicio2_RickAndMorty.Dtos;
 using Ejercicio2_RickAndMorty.Services;
+using Ejercicio2_RickAndMorty.Views;
 using MvvmHelpers.Commands;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,12 @@ namespace Ejercicio2_RickAndMorty.ViewModel
 {
     public class RickAndMortyViewModel : INotifyPropertyChanged
     {
-        public List<PersonajeDto> Personajes { get; set; } = new();
+        public ObservableCollection<PersonajeDto> Personajes { get; set; } = new();
+        public List<Ubicacion> Ubicaciones { get; set; } = new();
+        public List<Episodio> Episodios { get; set; } = new();
+        public PersonajeDto PersonajeActual { get; set; } = new();
+
+        public bool Internet { get; set; } = true;
 
         RickAndMortyServices api = new();
         public ICommand VerPersonajeCommand { get; set; }
@@ -23,19 +29,49 @@ namespace Ejercicio2_RickAndMorty.ViewModel
         {
             Cargar();
 
-            VerPersonajeCommand = new AsyncCommand(VerPersonaje);
+            VerPersonajeCommand = new AsyncCommand<PersonajeDto>(VerPersonaje);
         }
 
-        private async Task VerPersonaje()
+        private async Task VerPersonaje(PersonajeDto p)
         {
+            PersonajeActual = p;
+            var vista = new PersonajeView()
+            {
+                BindingContext = this
+            };
+            await Application.Current.MainPage.Navigation.PushAsync(vista);
 
+            OnPropertyChanged(nameof(PersonajeActual));
         }
 
         public async Task Cargar()
         {
-            Personajes = await api.GetAll();
 
-            OnPropertyChanged(nameof(Personajes));
+            if (Connectivity.Current.NetworkAccess == NetworkAccess.Internet)
+            {
+                var personajes = await api.GetAllCharacters();
+
+                foreach (var p in personajes)
+                {
+                    Personajes.Add(p);
+                }
+
+                Ubicaciones = await api.GetAllLocations();
+                Episodios = await api.GetAllEpisodes();
+
+                OnPropertyChanged(nameof(Ubicaciones));
+
+                OnPropertyChanged(nameof(Episodios));
+
+                Internet = true;
+            }
+            else
+            {
+                Internet = false;
+            }
+
+
+            OnPropertyChanged(nameof(Internet));
         }
 
 

@@ -8,7 +8,7 @@ namespace Ejercicio2_RickAndMorty.Dtos
 {
     public class PersonajesDto
     {
-        public List<PersonajeDto> Results { get; set; }
+        public IEnumerable<PersonajeDto> Results { get; set; }
     }
     public class PersonajeDto
     {

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Ejercicio2_RickAndMorty.ViewModel"
+             x:Class="Ejercicio2_RickAndMorty.Views.PersonajesView"
+             Title="PersonajesView">
+    <ContentPage.BindingContext>
+        <vm:RickAndMortyViewModel x:Name="vm" />
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <VerticalStackLayout>
+            <Image Source="logo.png"
+                   HeightRequest="80"
+                   Margin="10" />
+            <Label Text="No hay internet"
+                   FontSize="30">
+                <Label.Resources>
+                    <Style TargetType="Label">
+                        <Setter Property="IsVisible"
+                                Value="false" />
+                        <Style.Triggers>
+                            <DataTrigger TargetType="Label"
+                                         Binding="{Binding Internet}"
+                                         Value="false">
+                                <Setter Property="IsVisible"
+                                        Value="true" />
+                                <Setter Property="TextColor"
+                                        Value="Green" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Label.Resources>
+            </Label>
+            <CollectionView ItemsSource="{Binding Personajes}"
+                            ItemsLayout="VerticalGrid,2"
+                            SelectionMode="Single">
+               
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout Margin="10"
+                                             Padding="5,20"
+                                             Background="#2A384F">
+                            <VerticalStackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={x:Reference vm}, Path=VerPersonajeCommand}"
+                                                      CommandParameter="{Binding .}" />
+                            </VerticalStackLayout.GestureRecognizers>
+                            <Border HeightRequest="120"
+                                    WidthRequest="120"
+                                    Stroke="White"
+                                    StrokeThickness="5">
+                                <Border.StrokeShape>
+                                    <Ellipse />
+                                </Border.StrokeShape>
+                                <Image Source="{Binding Image}" />
+                            </Border>
+                            <Label Text="{Binding Name}"
+                                   Margin="5"
+                                   FontSize="18"
+                                   TextColor="White"
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center"
+                                   HorizontalOptions="Center" />
+                            <Label Text="{Binding Species, StringFormat=Specie: {0}}"
+                                   Margin="5"
+                                   FontSize="15"
+                                   TextColor="White"
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center"
+                                   HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
