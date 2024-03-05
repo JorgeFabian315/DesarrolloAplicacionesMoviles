@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Ejercicio3PlatziFakeStore.Views.EditarProductoView"
+             xmlns:vm="clr-namespace:Ejercicio3PlatziFakeStore.ViewModels"
+             xmlns:ur="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+             x:DataType="vm:PlatziViewModels"
+             Title="EditarProductoView">
+    <VerticalStackLayout Spacing="15"
+                         Padding="25"
+                         BackgroundColor="#1E1E1E">
+        <VerticalStackLayout.Resources>
+            <Style TargetType="Label">
+                <Setter Property="FontFamily"
+                        Value="A" />
+                <Setter Property="FontSize"
+                        Value="20" />
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="FontFamily"
+                        Value="A" />
+                <Setter Property="FontSize"
+                        Value="20" />
+            </Style>
+        </VerticalStackLayout.Resources>
+        <Label Text="Titulo"/>
+        <Entry Text="{Binding Producto.Title}"
+               TextColor="White" />
+        <Label Text="Precio" />
+        <Entry Text="{Binding Producto.Price}"
+               TextColor="White" />
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Button Text="Agregar"
+                    WidthRequest="150"
+                    HeightRequest="50"
+                    BackgroundColor="DarkGreen"
+                    TextColor="White"
+                    Margin="0,0,10,0"
+                    Command="{Binding EditarProductoCommand}" />
+            <Button Text="Cancelar"
+                    WidthRequest="150"
+                    HeightRequest="50"
+                    BackgroundColor="Red"
+                    TextColor="White"
+                    Command="{Binding CancelarCommand}" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

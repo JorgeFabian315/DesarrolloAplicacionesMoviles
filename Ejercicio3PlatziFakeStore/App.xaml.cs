@@ -1,4 +1,6 @@
-﻿namespace Ejercicio3PlatziFakeStore
+﻿using Ejercicio3PlatziFakeStore.Views;
+
+namespace Ejercicio3PlatziFakeStore
 {
     public partial class App : Application
     {
@@ -6,7 +8,7 @@
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            MainPage = new NavigationPage(new MainView());
         }
     }
 }
