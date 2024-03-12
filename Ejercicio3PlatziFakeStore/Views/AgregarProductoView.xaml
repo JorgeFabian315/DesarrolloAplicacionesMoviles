@@ -9,39 +9,41 @@
     <VerticalStackLayout Spacing="15"
                          Padding="25"
                          BackgroundColor="#1E1E1E">
-        <ur:EditorField Title="Titulo"
-                        Text="{Binding Producto.Title}"
-                        TextColor="White"
-                        TitleColor="White" />
-        <ur:EditorField Title="Precio"
-                        Text="{Binding Producto.Price}" 
-                        TextColor="White"
-                        TitleColor="White"/>
-        <ur:EditorField Title="Descripcion"
-                        Text="{Binding Producto.Description}"
-                        TextColor="White"
-                        TitleColor="White" />
-        <ur:PickerField Title="Categorias"
-                        TitleColor="White"
-                        TextColor="White"
-                        ItemsSource="{Binding Categorias}"
-                ItemDisplayBinding="{Binding Name}"
-                SelectedItem="{Binding Categoria}"/>
-        <HorizontalStackLayout>
-            
-        <Button Text="Agregar" WidthRequest="150"
-                HeightRequest="50"
-                BackgroundColor="Green"
-                TextColor="White"
-                Margin="0,0,10,0"
-                Command="{Binding AgregarProductoCommand}"
-                />
-        <Button Text="Cancelar"
-                WidthRequest="150"
-                HeightRequest="50"
+        <Label Text="Titulo"
+               FontSize="20" />
+        <Entry Text="{Binding Producto.Title}"
+               TextColor="White" />
+        <Label Text="Precio"
+               FontSize="20" />
+        <Entry Text="{Binding Producto.Price}"
+               TextColor="White" />
+        <Label Text="Descripción"
+               FontSize="20" />
+        <Entry Text="{Binding Producto.Description}"
+               TextColor="White" />
+        <HorizontalStackLayout VerticalOptions="Center">
+            <Label Text="Categoria:"
+                   FontSize="20" VerticalOptions="Center"/>
+            <Picker TextColor="White"
+                    Margin="20,0,0,0"
+                    ItemsSource="{Binding Categorias}"
+                    ItemDisplayBinding="{Binding Name}"
+                    SelectedItem="{Binding Categoria}" />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Button Text="Agregar"
+                    WidthRequest="150"
+                    HeightRequest="50"
+                    BackgroundColor="Green"
+                    TextColor="White"
+                    Margin="0,0,10,0"
+                    Command="{Binding AgregarProductoCommand}" />
+            <Button Text="Cancelar"
+                    WidthRequest="150"
+                    HeightRequest="50"
                     BackgroundColor="Red"
                     TextColor="White"
-                Command="{Binding CancelarCommand}" />
+                    Command="{Binding CancelarCommand}" />
         </HorizontalStackLayout>
     </VerticalStackLayout>
 </ContentPage>
