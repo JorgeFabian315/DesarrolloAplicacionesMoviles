@@ -103,7 +103,7 @@ namespace Ejercicio3PlatziFakeStore.ViewModels
             if (await api.CreateProduct(Producto))
             {
                 Producto.CreationAt = DateTime.Now;
-                Productos.Add(Producto);
+                CargarProductos();
 
                 await Cancelar();
             }
