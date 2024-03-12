@@ -20,13 +20,16 @@
                     FontFamily="M"
                     FontSize="18"
                     BackgroundColor="#1C2534" />
-            <Picker TextColor="White"
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Label Text="Categorias:" FontSize="30" TextColor="Black" Margin="10,0,20,0"/>
+                <Picker TextColor="White"
                     Style="{x:Null}"
                     BackgroundColor="#1C2534"
                     ItemsSource="{Binding Categorias}"
                     ItemDisplayBinding="{Binding Name}"
                     SelectedItem="{Binding Categoria}" />
             
+            </HorizontalStackLayout>
             <CollectionView ItemsSource="{Binding Productos}"
                             Margin="0,20"
                             ItemsLayout="VerticalGrid,3">
