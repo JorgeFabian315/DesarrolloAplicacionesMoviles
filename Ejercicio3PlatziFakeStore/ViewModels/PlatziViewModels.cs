@@ -3,20 +3,22 @@ using CommunityToolkit.Mvvm.Input;
 using Ejercicio3PlatziFakeStore.Models.Dtos;
 using Ejercicio3PlatziFakeStore.Services;
 using Ejercicio3PlatziFakeStore.Views;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Ejercicio3PlatziFakeStore.ViewModels
 {
     public partial class PlatziViewModels : ObservableObject
     {
+        EditarProductoView _editarView;
+        EliminarProductoView _eliminarView;
+
         public PlatziViewModels()
+        {
+            Iniciar();
+        }
+
+        private void Iniciar()
         {
             CargarCategorias();
             CargarProductos();
@@ -30,24 +32,20 @@ namespace Ejercicio3PlatziFakeStore.ViewModels
         public ProductoDto producto = new();
 
         private ApiService api = new();
-        public ICommand FiltrarProductosCategoriasCommand => new AsyncRelayCommand<int>(FiltrarProductosCategoria);
-
-
-        
 
 
         [RelayCommand]
         private void VistaEditarProducto(ProductoDto p)
         {
             Producto = p;
-            CambiarVista(new EditarProductoView());
+            CambiarVista(_editarView = new());
         }
 
         [RelayCommand]
         private void VistaEliminarProducto(ProductoDto p)
         {
             Producto = p;
-            CambiarVista(new EliminarProductoView());
+            CambiarVista(_eliminarView = new());
         }
 
         [RelayCommand]
@@ -92,13 +90,13 @@ namespace Ejercicio3PlatziFakeStore.ViewModels
         {
             if (await api.DeleteProduct(Producto.Id))
             {
-               Productos.Remove(Producto);
+                Productos.Remove(Producto);
                 CambiarVista();
             }
         }
 
         [RelayCommand]
-        private async Task AgregarProducto()
+        async Task AgregarProducto()
         {
             Producto.CategoryId = Categoria.Id;
 
@@ -113,7 +111,7 @@ namespace Ejercicio3PlatziFakeStore.ViewModels
         }
 
         [RelayCommand]
-        private void VistaAgregar()
+        void VistaAgregar()
         {
             Producto = new();
             Producto.Images.Add("https://placeimg.com/640/480/any");
@@ -150,10 +148,10 @@ namespace Ejercicio3PlatziFakeStore.ViewModels
             if (vm != null)
             {
                 vm.BindingContext = this;
-                await Application.Current.MainPage.Navigation.PushAsync(vm);
+                await App.Current.MainPage.Navigation.PushAsync(vm);
             }
             else
-                await Application.Current.MainPage.Navigation.PopToRootAsync();
+                await App.Current.MainPage.Navigation.PopToRootAsync();
         }
 
     }

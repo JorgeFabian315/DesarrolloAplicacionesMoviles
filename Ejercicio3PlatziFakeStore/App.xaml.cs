@@ -1,4 +1,5 @@
-﻿using Ejercicio3PlatziFakeStore.Views;
+﻿using Ejercicio3PlatziFakeStore.ViewModels;
+using Ejercicio3PlatziFakeStore.Views;
 
 namespace Ejercicio3PlatziFakeStore
 {

@@ -30,10 +30,10 @@
         <Entry Text="{Binding Producto.Price}"
                TextColor="White" />
         <HorizontalStackLayout HorizontalOptions="Center">
-            <Button Text="Agregar"
+            <Button Text="Editar"
                     WidthRequest="150"
                     HeightRequest="50"
-                    BackgroundColor="DarkGreen"
+                    BackgroundColor="Blue"
                     TextColor="White"
                     Margin="0,0,10,0"
                     Command="{Binding EditarProductoCommand}" />

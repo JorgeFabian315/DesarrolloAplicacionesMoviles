@@ -43,11 +43,13 @@
                             <VerticalStackLayout VerticalOptions="Center"
                                                  Spacing="10"
                                                  HorizontalOptions="Center">
+                                <Label Text="{Binding Id}"
+                                       TextColor="White" />
                                 <Grid>
-                                    <Image Source="{Binding Images[0]}"
+                                    <Image Source="caja.png"
                                            WidthRequest="100"
                                            HeightRequest="100" />
-                                    <Image Source="caja.png"
+                                    <Image Source="{Binding Images[1]}"
                                            WidthRequest="100"
                                            HeightRequest="100" />
                                 </Grid>

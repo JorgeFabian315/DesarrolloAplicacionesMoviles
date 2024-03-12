@@ -1,6 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Ejercicio3PlatziFakeStore.ViewModels;
+using Ejercicio3PlatziFakeStore.Views;
+using Microsoft.Extensions.Logging;
 using UraniumUI;
-
 namespace Ejercicio3PlatziFakeStore
 {
     public static class MauiProgram
@@ -12,7 +13,6 @@ namespace Ejercicio3PlatziFakeStore
                 .UseMauiApp<App>()
                 .UseUraniumUI()
                 .UseUraniumUIMaterial()
-                
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

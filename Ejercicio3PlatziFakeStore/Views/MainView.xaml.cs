@@ -9,17 +9,16 @@ public partial class MainView : ContentPage
 	public MainView()
 	{
 		InitializeComponent();
-
 	}
 
     private void Picker_SelectedIndexChanged(object sender, EventArgs e)
     {
-		var context = this.BindingContext as PlatziViewModels;
+		//var context = this.BindingContext as PlatziViewModels;
 
-		var picker = sender as Picker;
-		var categoria = (CategoryDto)picker.SelectedItem;
+		//var picker = sender as Picker;
+		//var categoria = (CategoryDto)picker.SelectedItem;
 
-        context.FiltrarProductosCategoriasCommand.Execute(categoria.Id);
+  //      context.FiltrarProductosCategoriasCommand.Execute(categoria.Id);
 
     }
 }
