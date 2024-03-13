@@ -109,10 +109,12 @@ namespace Ejercicio3PlatziFakeStore.Services
             {
 
                 var respuesta = await client.GetAsync($"{_url}products/?categoryId={idcategoria}");
-
-                var contenido =  JsonConvert.DeserializeObject<IEnumerable<ProductoDto>>(await respuesta.Content.ReadAsStringAsync());
-
-                return contenido;
+                if (respuesta.IsSuccessStatusCode)
+                {
+                    var contenido = JsonConvert.DeserializeObject<IEnumerable<ProductoDto>>
+                        (await respuesta.Content.ReadAsStringAsync());
+                    return contenido;
+                }
             }
 
             return lista;

@@ -14,9 +14,9 @@
                          Padding="10,40"
                          BackgroundColor="#1C2534">
         <Label Text="{Binding Producto.Title, StringFormat='Eliminar esta producto {0}'}" TextColor="White"
+               HorizontalTextAlignment="Center"
                HorizontalOptions="Center"
                FontSize="30"
-               HorizontalTextAlignment="Center"
                FontFamily="A"/>
         <Button Command="{Binding EliminarProductoCommand}" Margin="10"
                 WidthRequest="200"

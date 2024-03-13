@@ -4,6 +4,7 @@ using Ejercicio3PlatziFakeStore.Models.Dtos;
 using Ejercicio3PlatziFakeStore.Services;
 using Ejercicio3PlatziFakeStore.Views;
 using System.Collections.ObjectModel;
+using System.Runtime.Intrinsics.Arm;
 using System.Windows.Input;
 
 namespace Ejercicio3PlatziFakeStore.ViewModels
@@ -15,15 +16,9 @@ namespace Ejercicio3PlatziFakeStore.ViewModels
 
         public PlatziViewModels()
         {
-            Iniciar();
+            new Thread(CargarProductos) { IsBackground = true}.Start();
+            new Thread(CargarCategorias) { IsBackground = true}.Start();
         }
-
-        private void Iniciar()
-        {
-            CargarCategorias();
-            CargarProductos();
-        }
-
         public ObservableCollection<CategoryDto> Categorias { get; set; } = new();
         public ObservableCollection<ProductoDto> Productos { get; set; } = new();
         public CategoryDto Categoria { get; set; } = new();
