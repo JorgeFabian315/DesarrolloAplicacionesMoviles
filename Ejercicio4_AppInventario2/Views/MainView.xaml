@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Ejercicio4_AppInventario2.ViewModels"
+             xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
+             x:Class="Ejercicio4_AppInventario2.Views.MainView"
+             xmlns:views="clr-namespace:Ejercicio4_AppInventario2.Views"
+             Title="MainView"
+             BackgroundColor="#f5f7fa">
+    <ContentPage.BindingContext>
+        <vm:ArticulosViewModel />
+    </ContentPage.BindingContext>
+    <Grid Margin="20"
+          RowDefinitions=".1*,.1*,.8*">
+        <Label Text="Ariculos"
+               FontSize="30"
+               TextColor="{StaticResource colorprimario}" />
+        <SearchBar Placeholder="Buscar articulo"
+                   Grid.Row="1"
+                   TextChanged="SearchBar_TextChanged"
+                   x:Name="buscador"
+                   TextColor="White"
+                   PlaceholderColor="White"
+                   BackgroundColor="{StaticResource colorprimario}"
+                   SearchCommand="{Binding FiltrarArticulosCommand}"
+                   SearchCommandParameter="{Binding Text, Source={RelativeSource Mode=Self}}" />
+        <ScrollView Grid.Row="2"
+                    Margin="10">
+            <CollectionView VerticalScrollBarVisibility="Default"
+                            x:Name="lstArticulos"
+                            ItemsSource="{Binding Articulos}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"
+                                       ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions=".3*,.5*,.2*"
+                              Grid.Row="1"
+                              VerticalOptions="Start"
+                              BackgroundColor="Transparent"
+                              HeightRequest="150">
+                            <Border StrokeShape="RoundRectangle 10"
+                                    BackgroundColor="White"
+                                    StrokeThickness="1.5"
+                                    Stroke="#f27b0b"
+                                    Grid.ColumnSpan="3" />
+                            <!--<Border StrokeShape="RoundRectangle 5"
+                                    Margin="5"
+                                    StrokeThickness="0">
+                                <Image Source="productos.jpg"
+                                       WidthRequest="170"
+                                       Aspect="AspectFill" />
+                            </Border>-->
+                            <VerticalStackLayout Grid.Column="1"
+                                                 Spacing="5"
+                                                 VerticalOptions="Center"
+                                                 Margin="15,0,0,0">
+                                <Label Text="{Binding Descripcion}"
+                                       FontSize="17"
+                                       FontAttributes="Bold"
+                                       TextColor="{StaticResource negro}" />
+                                <Label Text="{Binding Precio, StringFormat='$ {0:0.00}'}"
+                                       TextColor="{StaticResource gris}"
+                                       FontSize="15" />
+                            </VerticalStackLayout>
+                            <HorizontalStackLayout VerticalOptions="End"
+                                                   HorizontalOptions="End"
+                                                   Margin="0,0,20,10"
+                                                   Grid.Column="1"
+                                                   Grid.ColumnSpan="2">
+                                <Label Text="Existencias: "
+                                       FontAttributes="Bold"
+                                       Margin="0,0,5,0"
+                                       TextColor="#f27b0b" />
+                                <Label Text="{Binding Exitencia}"
+                                       TextColor="{StaticResource negro}" />
+                            </HorizontalStackLayout>
+                            <HorizontalStackLayout Grid.ColumnSpan="3"
+                                                   HorizontalOptions="EndAndExpand"
+                                                   VerticalOptions="Start"
+                                                   Margin="10">
+                                <ImageButton Background="Blue"
+                                             Source="editar.png"
+                                             WidthRequest="30"
+                                             CornerRadius="10"
+                                             Padding="7"
+                                             Margin="10,0"
+                                             HeightRequest="30"
+                                             CommandParameter="{Binding .}"
+                                             Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ArticulosViewModel}},Path=VistaEditarCommand}"></ImageButton>
+                                <ImageButton BackgroundColor="Red"
+                                             Source="eliminar.png"
+                                             WidthRequest="30"
+                                             CornerRadius="10"
+                                             Padding="7,5,0,5"
+                                             Aspect="Fill"
+                                             HeightRequest="30"
+                                             CommandParameter="{Binding .}"
+                                             Clicked="btnEliminar_Clicked"/>
+                            </HorizontalStackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+        <Border StrokeShape="RoundRectangle 80"
+                StrokeThickness="0"
+                WidthRequest="60"
+                HeightRequest="60"
+                Grid.Row="2"
+                Grid.RowSpan="2"
+                VerticalOptions="End"
+                HorizontalOptions="End">
+            <Button BackgroundColor="{StaticResource colorprimario}"
+                    Text="+"
+                    Command="{Binding VistaAgregarCommand}"
+                    TextColor="White"
+                    FontSize="30"></Button>
+        </Border>
+    </Grid>
+</ContentPage>

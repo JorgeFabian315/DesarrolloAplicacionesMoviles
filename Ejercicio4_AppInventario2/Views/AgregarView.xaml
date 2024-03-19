@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Ejercicio4_AppInventario2.Views.AgregarView"
+             xmlns:vm="clr-namespace:Ejercicio4_AppInventario2.ViewModels"
+             x:DataType="vm:ArticulosViewModel"
+             Title="AgregarView"
+             BackgroundColor="White">
+    <VerticalStackLayout Margin="20" >
+        <VerticalStackLayout.Resources>
+            <Style TargetType="Label">
+                <Setter Property="Margin"
+                        Value="0,15" />
+                <Setter Property="FontSize"
+                        Value="17" />
+                <Setter Property="TextColor"
+                        Value="{StaticResource negro}" />
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="FontSize"
+                        Value="17" />
+                <Setter Property="TextColor"
+                        Value="{StaticResource negro}" />
+                <Setter Property="BackgroundColor"
+                        Value="{StaticResource Gray200}" />
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="Margin"
+                        Value="10,20" />
+                <Setter Property="TextColor"
+                        Value="White" />
+                
+            </Style>
+        </VerticalStackLayout.Resources>
+        <Label Text="Descripción:" />
+        <Entry Text="{Binding Articulo.Descripcion}" />
+        <Label Text="Precio:" />
+        <Entry Text="{Binding Articulo.Precio}" />
+        <Label Text="Existencia:" />
+        <Entry Text="{Binding Articulo.Exitencia}" />
+        <Button Text="Agregar"
+                Command="{Binding AgregarCommand}"
+                BackgroundColor="{StaticResource colorprimario}" />
+    </VerticalStackLayout>
+</ContentPage>
